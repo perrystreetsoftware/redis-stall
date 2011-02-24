@@ -541,3 +541,10 @@ void persistCommand(redisClient *c) {
         }
     }
 }
+
+void stallCommand(redisClient *c) {    
+    int stallTime = atoi(c->argv[1]->ptr);
+    sleep(stallTime);
+    addReply(c,shared.ok);
+    return;
+}
